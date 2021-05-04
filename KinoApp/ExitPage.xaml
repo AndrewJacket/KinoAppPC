@@ -1,0 +1,54 @@
+﻿<Page x:Class="KinoApp.ExitPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:KinoApp"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ExitPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="#46211A"/>
+        <Grid Grid.Row="1" Background="#BA5536"/>
+
+        <TextBlock Grid.Row="0" Text="Вы хотите выйти?" FontFamily="Proxima Nova" FontSize="28" Margin="26,44,498,36" Foreground="White" ></TextBlock>
+        <Button Name="RelogBtn" Grid.Row="1" Content="Выйти из личного кабинета" FontFamily="Proxima Nova" FontSize="13" Margin="26,120,560,78" Foreground="White" Click="RelogBtn_Click" >
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#46211A" Offset="1"/>
+                    <GradientStop Color="#A43820" Offset="0.218"/>
+                    <GradientStop Color="#693d3d" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Name="ExitAppBtn" Grid.Row="1" Content="Выйти из приложения" FontFamily="Proxima Nova" FontSize="13" Margin="297,120,289,78" Foreground="White" Click="ExitAppBtn_Click" >
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#46211A" Offset="1"/>
+                    <GradientStop Color="#A43820" Offset="0.218"/>
+                    <GradientStop Color="#693d3d" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button IsCancel="True" Name="CloseBtn" Grid.Row="1" Content="Отмена" FontFamily="Proxima Nova" FontSize="13" Margin="559,120,27,78" Foreground="White" Click="CloseBtn_Click" >
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#46211A" Offset="1"/>
+                    <GradientStop Color="#A43820" Offset="0.218"/>
+                    <GradientStop Color="#693d3d" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+    </Grid>
+    
+</Page>
+
+
+
+    

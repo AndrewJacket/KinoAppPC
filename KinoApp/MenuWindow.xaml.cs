@@ -22,6 +22,7 @@ namespace KinoApp
         public MenuWindow()
         {
             InitializeComponent();
+            MainFrame.Navigate(new SessionPage());
             Manager.MainFrame = MainFrame;
         }
 
@@ -52,12 +53,20 @@ namespace KinoApp
 
         private void AccountBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Navigate(new AccountPage());
         }
 
         private void ExitBtn_Click(object sender, RoutedEventArgs e)
         {
-            new ExitWindow().Show();
+            ExitFrame.Navigate(new ExitPage());
+            /*LogoBtn.IsEnabled = false;
+            SessionBtn.IsEnabled = false;
+            TodayBtn.IsEnabled = false;
+            SoonBtn.IsEnabled = false;
+            ContactsBtn.IsEnabled = false;
+            AccountBtn.IsEnabled = false;
+            ExitBtn.IsEnabled = false;
+            MainFrame.IsEnabled = false;*/
         }
     }
 }

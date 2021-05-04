@@ -6,17 +6,16 @@
       xmlns:local="clr-namespace:KinoApp"
       mc:Ignorable="d" 
       d:DesignHeight="890" d:DesignWidth="1920"
-      Title="ContactsPage">
+      Title="ContactsPage" Background="#e6e6e6">
 
     <Grid>
-        <Grid Background="#e6e6e6"></Grid>
-        <TextBlock Text="КОНТАКТЫ" Margin="758,55,758,748.6"  Foreground="#A43820" FontSize="52" FontFamily="Proxima Nova" FontWeight="Bold" TextAlignment="Center"/>
-        <TextBlock Text="По вопросам обслуживания в кинотеатре: " Margin="90,157,1004,646.6"  Foreground="#A43820" FontSize="38" FontFamily="Proxima Nova" FontWeight="Bold"/>
-        <TextBlock Text="Обратитесь к нам на электронную почту online@kyrage.ru или по телефону 8 (800) 505 69 28" Margin="90,243,351,560.6"  Foreground="#A43820" FontSize="34" FontFamily="Proxima Nova"/>
-        <TextBlock Text="Часы работы колл-центра 9:30 - 23:00 ежедневно" Margin="90,334,1004,469.6"  Foreground="#A43820" FontSize="34" FontFamily="Proxima Nova"/>
-        <TextBlock Text="По вопросам сотрудничества и размещения рекламы: " Margin="90,425,758,378.6"  Foreground="#A43820" FontSize="38" FontFamily="Proxima Nova" FontWeight="Bold"/>
-        <TextBlock Text="Обратитесь к нам на электронную почту ad@kyrage.ru или по телефону 8 (800) 812 36 12" Margin="90,516,351,287.6"  Foreground="#A43820" FontSize="34" FontFamily="Proxima Nova"/>
-        <TextBlock Text="Часы работы отдела рекламы: 10:00 - 19:00 по будним дням" Margin="90,602,758,201.6"  Foreground="#A43820" FontSize="34" FontFamily="Proxima Nova"/>
+        <TextBlock  Margin="758,55,758,748.6"  Foreground="#A43820" FontSize="52" FontFamily="Proxima Nova" FontWeight="Bold" TextAlignment="Center" Text="КОНТАКТЫ"/>
+        <TextBlock  Margin="90,157,1004,646.6" Foreground="#A43820" FontSize="38" FontFamily="Proxima Nova" FontWeight="Bold" Text="По вопросам обслуживания в кинотеатре: "/>
+        <TextBlock  Margin="90,243,351,560.6"  Foreground="#46211A" FontSize="34" FontFamily="Proxima Nova" Text="Обратитесь к нам на электронную почту online@kyrage.ru или по телефону 8 (800) 505 69 28"/>
+        <TextBlock  Margin="90,334,1004,469.6" Foreground="#46211A" FontSize="34" FontFamily="Proxima Nova" Text="Часы работы колл-центра 9:30 - 23:00 ежедневно"/>
+        <TextBlock  Margin="90,425,758,378.6"  Foreground="#A43820" FontSize="38" FontFamily="Proxima Nova" FontWeight="Bold" Text="По вопросам сотрудничества и размещения рекламы: "/>
+        <TextBlock  Margin="90,516,351,287.6"  Foreground="#46211A" FontSize="34" FontFamily="Proxima Nova" Text="Обратитесь к нам на электронную почту ad@kyrage.ru или по телефону 8 (800) 812 36 12"/>
+        <TextBlock  Margin="90,602,758,201.6"  Foreground="#46211A" FontSize="34" FontFamily="Proxima Nova" Text="Часы работы отдела рекламы: 10:00 - 19:00 по будним дням"/>
         <Image Source="Resources/contacts_logo.png" Margin="1530,516,70,55.6"/>
     </Grid>
 </Page>

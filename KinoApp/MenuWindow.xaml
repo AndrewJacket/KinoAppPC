@@ -18,7 +18,7 @@
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Background="#ffffff"></Grid>
+        <Grid Grid.Row="0" Background="White"></Grid>
         <StackPanel Orientation="Horizontal">
             <Image  Name="LogoBtn" Width="200" Source="Resources/LastLogo.png"  Cursor="Hand" MouseLeftButtonDown="LogoBtn_Click" />
             <Button Name="SessionBtn"   Content="Расписание"      Width="320" FontFamily="Proxima Nova" FontSize="48" Foreground="White" Background="#A43820" Click="SessionBtn_Click"  Cursor="Hand"  />
@@ -30,6 +30,7 @@
         </StackPanel>
         <Grid Grid.Row="2" Background="#46211A"></Grid>
         <TextBlock Grid.Row="2" Text="Кинотеатр Кураж" FontFamily="Proxima Nova" FontSize="45" HorizontalAlignment="Center" Foreground="White" ></TextBlock>
-        <Frame NavigationUIVisibility="Hidden" Grid.Row="1"  Name="MainFrame" Height="890"></Frame>
+        <Frame NavigationUIVisibility="Hidden" Grid.Row="1"  Name="MainFrame" Height="890"/>
+        <Frame NavigationUIVisibility="Hidden" Grid.Row="1"  Name="ExitFrame" Height="450" Width="800"/>
     </Grid>
 </Window>

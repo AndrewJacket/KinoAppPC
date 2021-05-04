@@ -1,0 +1,41 @@
+﻿<Page x:Class="KinoApp.DeletePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:KinoApp"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="DeletePage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="#46211A"/>
+        <Grid Grid.Row="1" Background="#BA5536"/>
+
+        <TextBlock Grid.Row="0" Text="Вы уверены, что хотите удалить свою учётную запись?         Вы немедленно выйдете из неё и больше не сможете войти." TextWrapping="Wrap" FontFamily="Proxima Nova" FontSize="27" Margin="10,44,10,36" Foreground="White" ></TextBlock>
+
+        <Button Name="DeleteBtn" Grid.Row="1" Content="Удалить учётную запись" FontFamily="Proxima Nova" FontSize="18" Margin="40,122,501,90" Foreground="White" Click="DeleteBtn_Click" >
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#46211A" Offset="1"/>
+                    <GradientStop Color="#A43820" Offset="0.218"/>
+                    <GradientStop Color="#693d3d" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Name="CloseBtn" Grid.Row="1" Content="Отмена" FontFamily="Proxima Nova" FontSize="18" Margin="501,122,40,90" Foreground="White" Click="CloseBtn_Click" >
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#46211A" Offset="1"/>
+                    <GradientStop Color="#A43820" Offset="0.218"/>
+                    <GradientStop Color="#693d3d" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+    </Grid>
+</Page>

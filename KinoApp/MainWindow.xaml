@@ -78,7 +78,7 @@
             </TextBox>
         </Border>
         <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="1" Background="WhiteSmoke" Margin="784,467,670,462" CornerRadius="15" >
-            <TextBox x:Name="Password" Margin="9,1"  FontFamily="Proxima Nova" FontSize="20" Foreground="#46211A" MaxLength="10" TextChanged="TextBox_TextChanged"  MouseLeftButtonDown="TextBox_MouseLeftButtonDown" TextInput="TextBox_TextInput" Style="{DynamicResource TextNew}">
+            <TextBox x:Name="Password" Margin="9,1"  FontFamily="Proxima Nova" FontSize="20" Foreground="#46211A" MaxLength="40" TextChanged="TextBox_TextChanged"  MouseLeftButtonDown="TextBox_MouseLeftButtonDown" TextInput="TextBox_TextInput" Style="{DynamicResource TextNew}">
                 <TextBox.BorderBrush>
                     <SolidColorBrush Color="#FFABADB3" Opacity="0"/>
                 </TextBox.BorderBrush>
@@ -88,10 +88,19 @@
             </TextBox>
         </Border>
 
-        <Button Grid.Row="1" Name="LoginBtn" Content="ВХОД"  Margin="1134,566,670,342"  FontFamily="Proxima Nova" FontSize="20" Foreground="White" Cursor="Hand" Click="LoginBtn_Click"  >
-            <Button.Effect>
-                <DropShadowEffect Color="Black" Direction="310" ShadowDepth="8" Opacity="0.4"/>
-            </Button.Effect>
+        <Button Grid.Row="1" Name="LoginBtn" Content="ВОЙТИ"  Margin="1110,578,670,330"  FontFamily="Proxima Nova" FontSize="20" Foreground="White" Cursor="Hand" Click="LoginBtn_Click"  >
+            
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#46211A" Offset="1"/>
+                    <GradientStop Color="#A43820" Offset="0.218"/>
+                    <GradientStop Color="#693d3d" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+
+        <Button Grid.Row="1" Name="RegBtn" Content="РЕГИСТРАЦИЯ"  Margin="650,578,1122,330"  FontFamily="Proxima Nova" FontSize="20" Foreground="White" Cursor="Hand" Click="RegBtn_Click"   >
+
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="#46211A" Offset="1"/>
