@@ -30,7 +30,7 @@
 
         <TextBlock Text="Имя:"            Foreground="#A43820" FontSize="38" FontFamily="Proxima Nova" FontWeight="Bold" TextAlignment="Center" Margin="50,125,1060,540" />
         <Border BorderBrush="Gray" BorderThickness="1" Background="WhiteSmoke" Margin="445,132,405,593" CornerRadius="15" >
-            <TextBox x:Name="Name"  Text="Информация Отсутствует"  Margin="9,1"  FontFamily="Proxima Nova" FontSize="26" Foreground="#46211A" MaxLength="40" TextChanged="TextBox_TextChanged"  MouseLeftButtonDown="TextBox_MouseLeftButtonDown" TextInput="TextBox_TextInput" Style="{DynamicResource TextNew}">
+            <TextBox x:Name="Name"  Text="Информация Отсутствует"  Margin="9,1"  FontFamily="Proxima Nova" FontSize="26" Foreground="#46211A" MaxLength="25" TextChanged="TextBox_TextChanged"  MouseLeftButtonDown="TextBox_MouseLeftButtonDown" TextInput="TextBox_TextInput" Style="{DynamicResource TextNew}">
                 <TextBox.Background>
                     <SolidColorBrush Color="White" Opacity="0"/>
                 </TextBox.Background>
@@ -58,7 +58,7 @@
         </Border>
         <TextBlock Text="Email:"          Foreground="#A43820" FontSize="38" FontFamily="Proxima Nova" FontWeight="Bold" TextAlignment="Center" Margin="50,435,1060,230" />
         <Border BorderBrush="Gray" BorderThickness="1" Background="WhiteSmoke" Margin="445,442,405,283" CornerRadius="15" >
-            <TextBox x:Name="Email"  Text="Информация Отсутствует"  Margin="9,1"  FontFamily="Proxima Nova" FontSize="26" Foreground="#46211A" MaxLength="40" TextChanged="TextBox_TextChanged"  MouseLeftButtonDown="TextBox_MouseLeftButtonDown" TextInput="TextBox_TextInput" Style="{DynamicResource TextNew}">
+            <TextBox x:Name="Email"  Text="Информация Отсутствует"  Margin="9,1"  FontFamily="Proxima Nova" FontSize="26" Foreground="#46211A" MaxLength="25" TextChanged="TextBox_TextChanged"  MouseLeftButtonDown="TextBox_MouseLeftButtonDown" TextInput="TextBox_TextInput" Style="{DynamicResource TextNew}">
                 <TextBox.Background>
                     <SolidColorBrush Color="White" Opacity="0"/>
                 </TextBox.Background>
@@ -70,7 +70,7 @@
         </Border>
         <TextBlock Text="Логин:"          Foreground="#A43820" FontSize="38" FontFamily="Proxima Nova" FontWeight="Bold" TextAlignment="Center" Margin="50,535,1060,130" />
         <Border BorderBrush="Gray" BorderThickness="1" Background="WhiteSmoke" Margin="445,542,405,183" CornerRadius="15" >
-            <TextBox x:Name="Login"  Text="Информация Отсутствует"  Margin="9,1"  FontFamily="Proxima Nova" FontSize="26" Foreground="#46211A" MaxLength="40" TextChanged="TextBox_TextChanged"  MouseLeftButtonDown="TextBox_MouseLeftButtonDown" TextInput="TextBox_TextInput" Style="{DynamicResource TextNew}">
+            <TextBox x:Name="Login"  Text="Информация Отсутствует"  Margin="9,1"  FontFamily="Proxima Nova" FontSize="26" Foreground="#46211A" MaxLength="25" TextChanged="TextBox_TextChanged"  MouseLeftButtonDown="TextBox_MouseLeftButtonDown" TextInput="TextBox_TextInput" Style="{DynamicResource TextNew}">
                 <TextBox.Background>
                     <SolidColorBrush Color="White" Opacity="0"/>
                 </TextBox.Background>
@@ -82,7 +82,7 @@
         </Border>
         <TextBlock Text="Пароль:"         Foreground="#A43820" FontSize="38" FontFamily="Proxima Nova" FontWeight="Bold" TextAlignment="Center" Margin="50,635,1060,30" />
         <Border BorderBrush="Gray" BorderThickness="1" Background="WhiteSmoke" Margin="440,642,410,83" CornerRadius="15" >
-            <TextBox x:Name="Password"  Text="Информация Отсутствует"  Margin="9,1"  FontFamily="Proxima Nova" FontSize="26" Foreground="#46211A" MaxLength="40" TextChanged="TextBox_TextChanged"  MouseLeftButtonDown="TextBox_MouseLeftButtonDown" TextInput="TextBox_TextInput" Style="{DynamicResource TextNew}">
+            <TextBox x:Name="Password"  Text="Информация Отсутствует"  Margin="9,1"  FontFamily="Proxima Nova" FontSize="26" Foreground="#46211A" MaxLength="25" TextChanged="TextBox_TextChanged"  MouseLeftButtonDown="TextBox_MouseLeftButtonDown" TextInput="TextBox_TextInput" Style="{DynamicResource TextNew}">
                 <TextBox.Background>
                     <SolidColorBrush Color="White" Opacity="0"/>
                 </TextBox.Background>

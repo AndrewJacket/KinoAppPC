@@ -70,7 +70,7 @@
         <TextBlock Grid.Row="1" Text=" Пароль"        Margin="525,580,1238,289" Foreground="#A43820" FontSize="30" FontFamily="Proxima Nova" FontWeight="Bold" />
 
         <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="1" Background="WhiteSmoke" Margin="800,180,720,703" CornerRadius="15" >
-            <TextBox x:Name="RegName"    Margin="9,1"  FontFamily="Proxima Nova" FontSize="20" Foreground="#46211A" MaxLength="40" TextChanged="TextBox_TextChanged"  MouseLeftButtonDown="TextBox_MouseLeftButtonDown" TextInput="TextBox_TextInput" Style="{DynamicResource TextNew}">
+            <TextBox x:Name="RegName"    Margin="9,1"  FontFamily="Proxima Nova" FontSize="20" Foreground="#46211A" MaxLength="25" TextChanged="TextBox_TextChanged"  MouseLeftButtonDown="TextBox_MouseLeftButtonDown" TextInput="TextBox_TextInput" Style="{DynamicResource TextNew}">
                 <TextBox.Background>
                     <SolidColorBrush Color="White" Opacity="0"/>
                 </TextBox.Background>
@@ -98,7 +98,7 @@
             </TextBox>
         </Border>
         <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="1" Background="WhiteSmoke" Margin="800,420,720,463" CornerRadius="15" >
-            <TextBox x:Name="RegEmail"    Margin="9,1"  FontFamily="Proxima Nova" FontSize="20" Foreground="#46211A" MaxLength="50" TextChanged="TextBox_TextChanged"  MouseLeftButtonDown="TextBox_MouseLeftButtonDown" TextInput="TextBox_TextInput" Style="{DynamicResource TextNew}">
+            <TextBox x:Name="RegEmail"    Margin="9,1"  FontFamily="Proxima Nova" FontSize="20" Foreground="#46211A" MaxLength="25" TextChanged="TextBox_TextChanged"  MouseLeftButtonDown="TextBox_MouseLeftButtonDown" TextInput="TextBox_TextInput" Style="{DynamicResource TextNew}">
                 <TextBox.Background>
                     <SolidColorBrush Color="White" Opacity="0"/>
                 </TextBox.Background>
@@ -109,7 +109,7 @@
             </TextBox>
         </Border>
         <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="1" Background="WhiteSmoke" Margin="800,500,720,383" CornerRadius="15" >
-            <TextBox x:Name="RegLogin"    Margin="9,1"  FontFamily="Proxima Nova" FontSize="20" Foreground="#46211A" MaxLength="40" TextChanged="TextBox_TextChanged"  MouseLeftButtonDown="TextBox_MouseLeftButtonDown" TextInput="TextBox_TextInput" Style="{DynamicResource TextNew}">
+            <TextBox x:Name="RegLogin"    Margin="9,1"  FontFamily="Proxima Nova" FontSize="20" Foreground="#46211A" MaxLength="25" TextChanged="TextBox_TextChanged"  MouseLeftButtonDown="TextBox_MouseLeftButtonDown" TextInput="TextBox_TextInput" Style="{DynamicResource TextNew}">
                 <TextBox.Background>
                     <SolidColorBrush Color="White" Opacity="0"/>
                 </TextBox.Background>
@@ -120,7 +120,7 @@
             </TextBox>
         </Border>
         <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="1" Background="WhiteSmoke" Margin="800,580,720,303" CornerRadius="15" >
-            <TextBox x:Name="RegPassword"    Margin="9,1"  FontFamily="Proxima Nova" FontSize="20" Foreground="#46211A" MaxLength="10" TextChanged="TextBox_TextChanged"  MouseLeftButtonDown="TextBox_MouseLeftButtonDown" TextInput="TextBox_TextInput" Style="{DynamicResource TextNew}">
+            <TextBox x:Name="RegPassword"    Margin="9,1"  FontFamily="Proxima Nova" FontSize="20" Foreground="#46211A" MaxLength="25" TextChanged="TextBox_TextChanged"  MouseLeftButtonDown="TextBox_MouseLeftButtonDown" TextInput="TextBox_TextInput" Style="{DynamicResource TextNew}">
                 <TextBox.Background>
                     <SolidColorBrush Color="White" Opacity="0"/>
                 </TextBox.Background>
