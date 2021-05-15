@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Background="#46211A"/>
-        <Button Grid.Row="0" Name="updateBtn" Content="Выбрать дату"  Width="200" Margin="1155,0,515,0"  FontFamily="Proxima Nova" FontSize="20" Foreground="White" Background="#A43820" />
+        <Button Grid.Row="0" Name="updateBtn" Content="Выбрать дату"  Width="200" Margin="1155,0,515,0"  FontFamily="Proxima Nova" FontSize="20" Foreground="White" Background="#A43820" Click="updateBtn_Click" />
         <DatePicker Name="DateSession" Grid.Row="0" IsDropDownOpen="False" SelectedDateFormat="Short" HorizontalAlignment="Right" Width="380" />
 
         <Frame NavigationUIVisibility="Hidden" Grid.Row="1"  Name="SessionFrame" Height="840"/>

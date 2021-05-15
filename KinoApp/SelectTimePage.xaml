@@ -1,0 +1,47 @@
+﻿<Page x:Class="KinoApp.SelectTimePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:KinoApp"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SelectTimePage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Выберете время сеанса." TextWrapping="Wrap" FontFamily="Proxima Nova" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="White" Panel.ZIndex="1"></TextBlock>
+
+        <Grid Grid.Row="0" Background="#46211A"/>
+        <TextBlock Grid.Row="0" Text="" TextWrapping="Wrap" FontFamily="Proxima Nova" FontSize="27" Margin="10,44,10,36" Foreground="White" ></TextBlock>
+
+
+        <ListView Grid.Row="2" Name="LViewTime" Background="{x:Null}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+
+                    <Grid Width="550">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding time_of_session}" Grid.Row="2" Grid.Column="2" Width="380" Height="120" HorizontalAlignment="Center" FontSize="16" FontFamily="Proxima Nova" TextAlignment="Center" TextWrapping="Wrap" Foreground="#A43820" />
+                    </Grid>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+    </Grid>
+</Page>

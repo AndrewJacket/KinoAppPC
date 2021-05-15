@@ -32,7 +32,8 @@ namespace KinoApp
         static string connectionString;
         SqlDataAdapter adapter;
         static DataTable Sessions;
-        
+        static DataTable DeleteSessions;
+
 
         public DateSessionPage()
         {
@@ -48,6 +49,16 @@ namespace KinoApp
             {
                 //Ошибка подключения БД!!
             }
+
+            string sql;
+            DeleteSessions = new DataTable();
+            SqlConnection connection1 = null;
+            sql = "DELETE FROM Sessions WHERE date_of_session <'" + SessionPage.DateToday + "'; ";
+            connection1 = new SqlConnection(connectionString);
+            SqlCommand command1 = new SqlCommand(sql, connection1);
+            connection1.Open();
+            int num = command1.ExecuteNonQuery();
+            connection1.Close();
         }
 
 
@@ -68,18 +79,18 @@ namespace KinoApp
                 }
             }
             return Sessions;
+
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             //хранимая процедура
-            DataTable Sessions = ExecuteSql("SELECT poster, movie_title, CONVERT(varchar,length,108) as length, genre, rating, date_of_session  FROM MoviesSessions WHERE (date_of_session='" + SessionPage.Date + "');");
+            DataTable Sessions = ExecuteSql("SELECT poster, movie_title, CONVERT(varchar,length,108) as length, genre, rating, CONVERT(varchar,date_of_session,106) as date_of_session  FROM MoviesSessions WHERE (date_of_session='" + SessionPage.Date + "');");
             LViewSessions.ItemsSource = Sessions.DefaultView;
-
         }
 
-        
+        private void LViewSessions_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
-
-
+        }
     }
 }

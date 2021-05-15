@@ -14,8 +14,8 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
-        <ListView Grid.Row="1" Name="LViewSessions" Background="{x:Null}">
+       
+        <ListView Grid.Row="1" Name="LViewSessions" Background="{x:Null}" SelectionChanged="LViewSessions_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
 
@@ -53,5 +53,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Frame NavigationUIVisibility="Hidden" Grid.Row="1"  Name="SelectTimeFrame" Height="450" Width="800"/>
     </Grid>
 </Page>

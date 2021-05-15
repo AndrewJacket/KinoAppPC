@@ -31,32 +31,32 @@ namespace KinoApp
     public partial class SessionPage : Page
     {
         public static string Date { get; set; }
-        public static bool dateCheck { get; set; }
+        public static string DateToday { get; set; }
         public SessionPage()
         {
             InitializeComponent();
             //dateCheck = false;
-           
-                Date = DateTime.Now.ToString();
-                Date = Date.Substring(0, Date.LastIndexOf(' ') + 1);
-                SessionFrame.Navigate(new DateSessionPage());
+
+            Date = DateTime.Now.ToString();
+            Date = Date.Substring(0, Date.LastIndexOf(' ') + 1);
+            DateToday = DateTime.Now.ToString();
+            DateToday = DateToday.Substring(0, DateToday.LastIndexOf(' ') + 1);
+            SessionFrame.Navigate(new DateSessionPage());
         }
 
 
         private void updateBtn_Click(object sender, RoutedEventArgs e)
         {
-           
-            if (DateSession.DisplayDate == null)
+
+            if (DateSession.SelectedDate.HasValue)
             {
-                Date = DateTime.Now.ToString();
+                Date = DateSession.SelectedDate.Value.ToString();
                 Date = Date.Substring(0, Date.LastIndexOf(' ') + 1);
                 SessionFrame.Navigate(new DateSessionPage());
             }
             else
-            if (DateSession.DisplayDate != null)
             {
-                Date = DateSession.Text;
-                Date = Date.Substring(0, Date.LastIndexOf(' ') + 1);
+
             }
         }
     }
