@@ -30,58 +30,34 @@ namespace KinoApp
     /// </summary>
     public partial class SessionPage : Page
     {
-
-       static  string connectionString;
-                SqlDataAdapter adapter;
-        static  DataTable Sessions;
-
-
+        public static string Date { get; set; }
+        public static bool dateCheck { get; set; }
         public SessionPage()
         {
             InitializeComponent();
-            connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            SqlConnection connection = new SqlConnection(connectionString);
-            try
-            {
-                connection.Open();
-                //подключено БД
-            }
-            catch (SqlException)
-            {
-                //Ошибка подключения БД!!
-            }
-        }
-
-
-        static  DataTable ExecuteSql(string sql)
-        {
-            Sessions = new DataTable();
-            SqlConnection connection = null;
-
-            connection = new SqlConnection(connectionString);
-            using (connection)
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand(sql, connection);
-                SqlDataReader reader = command.ExecuteReader();
-                using (reader)
-                {
-                    Sessions.Load(reader);
-                }
-            }
-            return Sessions;
-        }
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            //хранимая процедура
-            DataTable Sessions = ExecuteSql("SELECT poster, movie_title, CONVERT(varchar,length,108) as length, genre, rating,name_hall,CONVERT(varchar, date_of_session, 100) as date_of_session FROM MoviesSessions;");
-            LViewSessions.ItemsSource = Sessions.DefaultView;
+            //dateCheck = false;
            
+                Date = DateTime.Now.ToString();
+                Date = Date.Substring(0, Date.LastIndexOf(' ') + 1);
+                SessionFrame.Navigate(new DateSessionPage());
         }
-        
+
+
+        private void updateBtn_Click(object sender, RoutedEventArgs e)
+        {
+           
+            if (DateSession.DisplayDate == null)
+            {
+                Date = DateTime.Now.ToString();
+                Date = Date.Substring(0, Date.LastIndexOf(' ') + 1);
+                SessionFrame.Navigate(new DateSessionPage());
+            }
+            else
+            if (DateSession.DisplayDate != null)
+            {
+                Date = DateSession.Text;
+                Date = Date.Substring(0, Date.LastIndexOf(' ') + 1);
+            }
+        }
     }
-       
-
-
-    
 }

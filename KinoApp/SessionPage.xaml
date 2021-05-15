@@ -7,54 +7,18 @@
       mc:Ignorable="d" 
       d:DesignHeight="890" d:DesignWidth="1920"
       Background="White"
-      Title="SessionPage" Loaded="Page_Loaded">
+      Title="SessionPage" >
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="50" /> 
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <Grid Grid.Row="0" Background="#46211A"/>
+        <Button Grid.Row="0" Name="updateBtn" Content="Выбрать дату"  Width="200" Margin="1155,0,515,0"  FontFamily="Proxima Nova" FontSize="20" Foreground="White" Background="#A43820" />
+        <DatePicker Name="DateSession" Grid.Row="0" IsDropDownOpen="False" SelectedDateFormat="Short" HorizontalAlignment="Right" Width="380" />
 
-        <ListView Grid.Row="1" Name="LViewSessions" Background="{x:Null}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-
-                    <Grid Width="1600">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="150"/>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="160"/>
-                <RowDefinition Height="75"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300"/>
-                <ColumnDefinition Width="400"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <Image Grid.Column="0" Grid.RowSpan="4"  Width="250" Height="360" Margin="25,35,25,50">
-                <Image.Source>
-                    <Binding Path="poster">
-                        <Binding.TargetNullValue >
-                            <ImageSource>Resources/no_photo.png</ImageSource>
-                        </Binding.TargetNullValue>
-                    </Binding>
-                </Image.Source>
-            </Image>
-
-            <TextBlock Text="{Binding movie_title}"     Grid.Row="0" Grid.Column="1" Width="380" Height="120" HorizontalAlignment="Center" FontSize="34" FontFamily="Proxima Nova" TextAlignment="Center" TextWrapping="Wrap" Foreground="#A43820" FontWeight="Bold" />
-            <TextBlock Text="{Binding length}"          Grid.Row="1" Grid.Column="1" Width="200" Height="50"  HorizontalAlignment="Right"  FontSize="20" FontFamily="Proxima Nova" TextAlignment="Right"  TextWrapping="Wrap" Foreground="#46211A" FontWeight="Medium" />
-            <TextBlock Text="{Binding genre}"           Grid.Row="2" Grid.Column="1" Width="380" Height="185" HorizontalAlignment="Center" FontSize="26" FontFamily="Proxima Nova" TextAlignment="Left"   TextWrapping="Wrap" Foreground="#A43820" FontWeight="Medium" />
-            <TextBlock Text="{Binding rating}"          Grid.Row="3" Grid.Column="1" Width="250" Height="45"  HorizontalAlignment="Center" FontSize="40" FontFamily="Proxima Nova" TextAlignment="Left"   TextWrapping="Wrap" Foreground="#46211A" FontWeight="ExtraBold" />
-            <TextBlock Text="{Binding name_hall}"       Grid.Row="3" Grid.Column="2" Width="380" Height="55"  HorizontalAlignment="Center" FontSize="20" FontFamily="Proxima Nova" TextAlignment="Center" TextWrapping="Wrap" Foreground="#46211A" />
-            <TextBlock Text="{Binding date_of_session}" Grid.Row="2" Grid.Column="2" Width="380" Height="120" HorizontalAlignment="Center" FontSize="16" FontFamily="Proxima Nova" TextAlignment="Center" TextWrapping="Wrap" Foreground="#A43820" />
-            <TextBlock Text="Продолжительность: "       Grid.Row="1" Grid.Column="1" Width="200" Height="50"  HorizontalAlignment="Left"   FontSize="20" FontFamily="Proxima Nova" TextAlignment="Left"   TextWrapping="Wrap" Foreground="#46211A" FontWeight="Medium" />
-        </Grid>
-
-        </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
+        <Frame NavigationUIVisibility="Hidden" Grid.Row="1"  Name="SessionFrame" Height="840"/>
     </Grid>
 </Page>
