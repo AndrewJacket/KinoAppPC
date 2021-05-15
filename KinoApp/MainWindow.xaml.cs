@@ -129,7 +129,7 @@ namespace KinoApp
                     dob_ = reader[7].ToString();
                     surname_ = reader[8].ToString();
                     patronymic_ = reader[9].ToString();
-                   // new MenuWindow().Show();
+                    new MenuWindow().Show();
                     this.Close();
                     return;
                 }
