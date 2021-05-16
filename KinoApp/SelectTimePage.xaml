@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:KinoApp"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="SelectTimePage">
+      Background="White"
+      Title="SelectTimePage" Loaded="Page_Loaded">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -15,27 +16,43 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="Выберете время сеанса." TextWrapping="Wrap" FontFamily="Proxima Nova" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="White" Panel.ZIndex="1"></TextBlock>
+
+        <TextBlock Grid.Row="0" Text="Выберете время сеанса." TextWrapping="Wrap" FontFamily="Proxima Nova" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="White" Panel.ZIndex="1"/>
 
         <Grid Grid.Row="0" Background="#46211A"/>
-        <TextBlock Grid.Row="0" Text="" TextWrapping="Wrap" FontFamily="Proxima Nova" FontSize="27" Margin="10,44,10,36" Foreground="White" ></TextBlock>
 
+        <Image Name="Close" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="50" Width="50" Source="Resources/cross.png"  Cursor="Hand" MouseLeftButtonDown="Close_MouseLeftButtonDown" >
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsMouseOver,ElementName=Exit}" Value="True">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
 
-        <ListView Grid.Row="2" Name="LViewTime" Background="{x:Null}">
+        <ListView Grid.Row="2" Grid.Column="1" Name="LViewTime" Background="{x:Null}">
             <ListView.ItemTemplate>
                 <DataTemplate>
 
-                    <Grid Width="550">
+                    <Grid Width="600"  >
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-
+                            <RowDefinition Height="155"/>
                         </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding time_of_session}" Grid.Row="2" Grid.Column="2" Width="380" Height="120" HorizontalAlignment="Center" FontSize="16" FontFamily="Proxima Nova" TextAlignment="Center" TextWrapping="Wrap" Foreground="#A43820" />
+
+                        <Border Grid.Row="0" Height="50" BorderBrush="Gray" BorderThickness="1"  >
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                    <GradientStop Color="#46211A" Offset="1"/>
+                                    <GradientStop Color="#A43820" Offset="0.218"/>
+                                    <GradientStop Color="#693d3d" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <TextBlock Text="{Binding time_of_session}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="Proxima Nova" TextAlignment="Center" TextWrapping="Wrap" Foreground="White" Margin="-1,11,0,9" IsHitTestVisible="False"   />
+                        </Border>
+
                     </Grid>
 
                 </DataTemplate>
