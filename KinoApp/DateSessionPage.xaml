@@ -42,12 +42,12 @@
                             </Image.Source>
                         </Image>
 
-                        <TextBlock Text="{Binding movie_title}"     Grid.Row="0" Grid.Column="1" Width="380" Height="120" HorizontalAlignment="Center" FontSize="34" FontFamily="Proxima Nova" TextAlignment="Center" TextWrapping="Wrap" Foreground="#A43820" FontWeight="Bold" />
+                        <TextBlock Text="{Binding movie_title}"     Grid.Row="0" Grid.Column="1" Width="380" Height="120" HorizontalAlignment="Center" FontSize="34" FontFamily="Proxima Nova" TextAlignment="Center" TextWrapping="Wrap" Foreground="#A43820" FontWeight="Bold"  />
                         <TextBlock Text="{Binding length}"          Grid.Row="1" Grid.Column="1" Width="200" Height="50"  HorizontalAlignment="Right"  FontSize="20" FontFamily="Proxima Nova" TextAlignment="Right"  TextWrapping="Wrap" Foreground="#46211A" FontWeight="Medium" />
                         <TextBlock Text="{Binding genre}"           Grid.Row="2" Grid.Column="1" Width="380" Height="185" HorizontalAlignment="Center" FontSize="26" FontFamily="Proxima Nova" TextAlignment="Left"   TextWrapping="Wrap" Foreground="#A43820" FontWeight="Medium" />
                         <TextBlock Text="{Binding rating}"          Grid.Row="3" Grid.Column="1" Width="250" Height="45"  HorizontalAlignment="Center" FontSize="40" FontFamily="Proxima Nova" TextAlignment="Left"   TextWrapping="Wrap" Foreground="#46211A" FontWeight="ExtraBold" />
                         <TextBlock Text="{Binding date_of_session}" Grid.Row="2" Grid.Column="2" Width="380" Height="120" HorizontalAlignment="Center" FontSize="16" FontFamily="Proxima Nova" TextAlignment="Center" TextWrapping="Wrap" Foreground="#A43820" />
-                        <!-- -->
+                       <!-- <Label     x:Name="movie_id_" Content="{Binding SelectedItem.movie_id, ElementName=movie_id_}" />; -->
                         <TextBlock Text="Продолжительность: "       Grid.Row="1" Grid.Column="1" Width="200" Height="50"  HorizontalAlignment="Left"   FontSize="20" FontFamily="Proxima Nova" TextAlignment="Left"   TextWrapping="Wrap" Foreground="#46211A" FontWeight="Medium" />
                     </Grid>
 

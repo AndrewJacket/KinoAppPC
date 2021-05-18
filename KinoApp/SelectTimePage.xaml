@@ -33,7 +33,7 @@
             </Image.Style>
         </Image>
 
-        <ListView Grid.Row="2" Grid.Column="1" Name="LViewTime" Background="{x:Null}">
+        <ListView Grid.Row="2" Grid.Column="1" Name="LViewTime" Background="{x:Null}" SelectionChanged="LViewTime_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
 

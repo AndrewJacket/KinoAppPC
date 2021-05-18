@@ -21,23 +21,22 @@ using System.Windows.Media.Animation;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
+
 namespace KinoApp
 {
     /// <summary>
-    /// Логика взаимодействия для SelectTimePage.xaml
+    /// Логика взаимодействия для SessionWindow.xaml
     /// </summary>
-    public partial class SelectTimePage : Page
+    public partial class SessionWindow : Window
     {
-
         static string connectionString;
         SqlDataAdapter adapter;
-        static DataTable TimeSessions;
+        static DataTable NameMovie;
 
-        public static string session_ { get; set; }
-
-        public SelectTimePage()
+        public SessionWindow()
         {
             InitializeComponent();
+            SelectPLaceFrame.Navigate(new PlacesPage());
             connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection connection = new SqlConnection(connectionString);
             try
@@ -51,42 +50,36 @@ namespace KinoApp
             }
         }
 
-        static DataTable ExecuteSql(string sql)
-        {
-            TimeSessions = new DataTable();
-            SqlConnection connection = null;
-
-            connection = new SqlConnection(connectionString);
-            using (connection)
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand(sql, connection);
-                SqlDataReader reader = command.ExecuteReader();
-                using (reader)
-                {
-                    TimeSessions.Load(reader);
-                }
-            }
-            return TimeSessions;
-
-        }
-
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            //хранимая процедура
-            TimeSessions = ExecuteSql("SELECT CONVERT(varchar,time_of_session,108) as time_of_session, session_id FROM SelectTime WHERE ((movie_id='" + DateSessionPage.movie_id_ + "') and (date_of_session ='" + DateSessionPage.day_session_ + "'))");
-            LViewTime.ItemsSource = TimeSessions.DefaultView;
+            movie.Text = "Информация отсутствует";
+            rating.Text = "Информация отсутствует";
+            hall.Text = "Информация отсутствует";
+            date.Text = "Информация отсутствует";
+            time.Text = "Информация отсутствует";
+            string sql;
+            NameMovie = new DataTable();
+            SqlConnection connection = null;
+            sql = "SELECT movie_title, rating, name_hall, CONVERT(varchar,date_of_session,106) as date_of_session, time_of_session FROM SelectMovie WHERE(session_id = '" + SelectTimePage.session_ + "')";
+            connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(sql, connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                movie.Text = reader[0].ToString();
+                rating.Text = reader[1].ToString();
+                hall.Text = reader[2].ToString();
+                date.Text = reader[3].ToString();
+                time.Text = reader[4].ToString();
+                return;
+            }
+            reader.Close();
         }
 
         private void Close_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            NavigationService.Navigate(null);
-        }
-
-        private void LViewTime_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            session_ = TimeSessions.Rows[LViewTime.SelectedIndex]["session_id"].ToString().Trim();
-            new SessionWindow().Show();
+            new MenuWindow().Show();
             Helper.CloseWindow(Window.GetWindow(this));
         }
     }

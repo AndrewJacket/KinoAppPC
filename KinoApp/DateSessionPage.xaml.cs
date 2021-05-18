@@ -33,8 +33,6 @@ namespace KinoApp
         SqlDataAdapter adapter;
         static DataTable Sessions;
         static DataTable DeleteSessions;
-        static DataTable SelectSessions;
-
         public static string movie_id_ { get; set; }
         public static string day_session_ { get; set; }
         public DateSessionPage()
@@ -86,28 +84,17 @@ namespace KinoApp
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             //хранимая процедура
-            DataTable Sessions = ExecuteSql("SELECT poster, movie_title, CONVERT(varchar,length,108) as length, genre, rating, CONVERT(varchar,date_of_session,106) as date_of_session  FROM MoviesSessions WHERE (date_of_session='" + SessionPage.Date + "');");
+            Sessions = ExecuteSql("SELECT poster, movie_title, CONVERT(varchar,length,108) as length, genre, rating, CONVERT(varchar,date_of_session,106) as date_of_session, movie_id  FROM MoviesSessions WHERE (date_of_session='" + SessionPage.Date + "');");
             LViewSessions.ItemsSource = Sessions.DefaultView;
         }
 
         private void LViewSessions_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string sql;
-            SelectSessions = new DataTable();
-            SqlConnection connection = null;
-            sql = "SELECT movie_title, CONVERT(varchar,date_of_session,106) as date_of_session, movie_id  FROM MoviesSessions WHERE (date_of_session='" + SessionPage.Date + "'); ";
-            connection = new SqlConnection(connectionString);
-            SqlCommand command = new SqlCommand(sql, connection);
-            connection.Open();
-            SqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                day_session_ = reader[1].ToString();
-                movie_id_ = reader[2].ToString();
-                SelectTimeFrame.Navigate(new SelectTimePage());
-                return;
-            }
-            reader.Close();
+            movie_id_ = Sessions.Rows[LViewSessions.SelectedIndex]["movie_id"].ToString().Trim();
+            day_session_ = Sessions.Rows[LViewSessions.SelectedIndex]["date_of_session"].ToString().Trim();
+            SelectTimeFrame.Navigate(new SelectTimePage());
+
+
         }
     }
 }

@@ -1,0 +1,46 @@
+﻿<Window x:Class="KinoApp.SessionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KinoApp"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        WindowState="Maximized"
+        Title="SessionWindow"  Height="1080" Width="1920" Loaded="Page_Loaded">
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="#46211A"/>
+        <Grid Grid.Row="2" Background="#46211A"/>
+
+        <Image Name="Close" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="50" Width="50" Source="Resources/cross.png"  Cursor="Hand" MouseLeftButtonDown="Close_MouseLeftButtonDown"  >
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsMouseOver,ElementName=Exit}" Value="True">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+
+        <TextBlock Name="movie"           FontFamily="Proxima Nova" TextWrapping="Wrap" Text="errname"   Foreground="White" FontSize="38" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1400" />
+        <TextBlock Name="rating"          FontFamily="Proxima Nova" TextWrapping="Wrap" Text="errrating" Foreground="White" FontSize="20" Margin="0,50,1828,75" />
+        <TextBlock Name="hall"            FontFamily="Proxima Nova" TextWrapping="Wrap" Text="errhall"   Foreground="White" FontSize="28" Margin="92,50,1582,68" />
+        <TextBlock Name="date"            FontFamily="Proxima Nova" TextWrapping="Wrap" Text="errdate"   Foreground="White" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+        <TextBlock Name="time"            FontFamily="Proxima Nova" TextWrapping="Wrap" Text="errtime"   Foreground="White" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <TextBlock Text="Времня сеанса: " FontFamily="Proxima Nova" TextWrapping="Wrap"                  Foreground="White" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="708,0,1006,0" Width="206"/>
+
+        <Frame NavigationUIVisibility="Hidden" Grid.Row="1"  Name="SelectPLaceFrame"/>
+    </Grid>
+</Window>
