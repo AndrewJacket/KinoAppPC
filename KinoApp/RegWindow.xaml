@@ -81,7 +81,7 @@
             </TextBox>
         </Border>
         <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="1" Background="WhiteSmoke" Margin="800,260,720,623" CornerRadius="15" >
-            <DatePicker Name="RegDob" IsDropDownOpen="True" SelectedDateFormat="Short" Margin="9,-1,9,-64" />
+            <DatePicker Name="RegDob" IsDropDownOpen="False" SelectedDateFormat="Short" Margin="9,-1,9,-64" />
 
 
            

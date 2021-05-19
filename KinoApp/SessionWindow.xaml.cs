@@ -33,6 +33,8 @@ namespace KinoApp
         SqlDataAdapter adapter;
         static DataTable NameMovie;
 
+        public static string hall_id_ { get; set; }
+
         public SessionWindow()
         {
             InitializeComponent();
@@ -60,7 +62,7 @@ namespace KinoApp
             string sql;
             NameMovie = new DataTable();
             SqlConnection connection = null;
-            sql = "SELECT movie_title, rating, name_hall, CONVERT(varchar,date_of_session,106) as date_of_session, time_of_session FROM SelectMovie WHERE(session_id = '" + SelectTimePage.session_ + "')";
+            sql = "SELECT movie_title, rating, name_hall, CONVERT(varchar,date_of_session,106) as date_of_session, time_of_session, hall_id FROM SelectMovie WHERE(session_id = '" + SelectTimePage.session_ + "')";
             connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand(sql, connection);
             connection.Open();
@@ -72,6 +74,7 @@ namespace KinoApp
                 hall.Text = reader[2].ToString();
                 date.Text = reader[3].ToString();
                 time.Text = reader[4].ToString();
+                hall_id_ = reader[5].ToString();
                 return;
             }
             reader.Close();

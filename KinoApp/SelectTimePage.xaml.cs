@@ -78,16 +78,17 @@ namespace KinoApp
             LViewTime.ItemsSource = TimeSessions.DefaultView;
         }
 
-        private void Close_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            NavigationService.Navigate(null);
-        }
 
         private void LViewTime_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             session_ = TimeSessions.Rows[LViewTime.SelectedIndex]["session_id"].ToString().Trim();
             new SessionWindow().Show();
             Helper.CloseWindow(Window.GetWindow(this));
+        }
+
+        private void Close_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(null);
         }
     }
 }
