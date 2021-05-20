@@ -9,21 +9,22 @@
       Background="White"
       Title="PlacesPage" Loaded="Page_Loaded">
 
-    <Page.Resources>
-
-    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*" />
+            <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="70"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="150"/>
         </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Место/Ряд" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="Proxima Nova" TextAlignment="Center" TextWrapping="Wrap" Foreground="#A43820" IsHitTestVisible="False"/>
 
 
         <Grid Grid.Row="2" Grid.Column="0" >
@@ -76,7 +77,68 @@
                                 <ColumnDefinition Width="30"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="{Binding row}"   Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="Proxima Nova" TextAlignment="Center" TextWrapping="Wrap" Foreground="#A43820" IsHitTestVisible="False"   />
+                            <TextBlock Text="{Binding row}" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="Proxima Nova" TextAlignment="Center" TextWrapping="Wrap" Foreground="#A43820" IsHitTestVisible="False"   />
+                        </Grid>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="3" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <ListView Grid.Column="1" Name="LViewPrice" Background="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Style.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#00000000" />
+                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="#00000000"/>
+                        </Style.Resources>
+
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                    <Border BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
+                                        <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                    </Border>
+
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsEnabled" Value="false">
+                                            <Setter Property="Foreground" Value="#ADADAD"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Grid Width="auto"  >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="70"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="30"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="{Binding price}" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="Proxima Nova" TextAlignment="Center" TextWrapping="Wrap" Foreground="#A43820" IsHitTestVisible="False" Margin="0,0,45,0"/>
+                            <TextBlock Text="руб."            Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="Proxima Nova" TextAlignment="Center" TextWrapping="Wrap" Foreground="#A43820" IsHitTestVisible="False" Margin="60,0,0,0"/>
+
                         </Grid>
 
                     </DataTemplate>
@@ -91,7 +153,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <ListView Grid.Row="1" Name="LViewPlace" Background="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="250,0,320,0">
+            <ListView Grid.Row="1" Name="LViewPlace" Background="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="250,0,170,0">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="{x:Type ListViewItem}">
                         <Style.Resources>
@@ -143,7 +205,7 @@
             </ListView>
         </Grid>
 
-         <ListView Grid.Row="2" Grid.Column="2" Name="LViewRowPlace" Background="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Cursor="Hand" Margin="250,0,320,0">
+         <ListView Grid.Row="2" Grid.Column="2" Name="LViewRowPlace" Background="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Cursor="Hand" Margin="250,0,170,0" SelectionChanged="LViewRowPlace_SelectionChanged" >
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
@@ -156,7 +218,7 @@
                     <Grid Width="auto"  >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
-                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="70"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>

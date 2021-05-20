@@ -33,8 +33,11 @@ namespace KinoApp
         static DataTable RowPlaceSessions;
         static DataTable RowSessions;
         static DataTable PlaceSessions;
+        static DataTable PriceSessions;
+        static DataTable Sessions;
 
-        public static string row_ { get; set; }
+        //public static string place_ { get; set; }
+        //Array order_places = 
         public PlacesPage()
         {
             InitializeComponent();
@@ -53,7 +56,7 @@ namespace KinoApp
 
         static DataTable ExecuteSql(string sql)
         {
-            PlaceSessions = new DataTable();
+            Sessions = new DataTable();
             SqlConnection connection = null;
 
             connection = new SqlConnection(connectionString);
@@ -64,10 +67,10 @@ namespace KinoApp
                 SqlDataReader reader = command.ExecuteReader();
                 using (reader)
                 {
-                    PlaceSessions.Load(reader);
+                    Sessions.Load(reader);
                 }
             }
-            return PlaceSessions;
+            return Sessions;
 
         }
 
@@ -77,11 +80,22 @@ namespace KinoApp
         {  
             RowSessions = ExecuteSql("SELECT row FROM Places  WHERE (hall_id ='" + SessionWindow.hall_id_ + "') GROUP BY row");
             LViewRow.ItemsSource = RowSessions.DefaultView;
+
+            PriceSessions = ExecuteSql("SELECT CONVERT(varchar,price,100) as price FROM PlaceSession  WHERE (session_id ='" + SelectTimePage.session_ + "') GROUP BY price, row ORDER BY row");
+            LViewPrice.ItemsSource = PriceSessions.DefaultView;
+
             PlaceSessions = ExecuteSql("SELECT place FROM Places  WHERE (hall_id ='" + SessionWindow.hall_id_ + "') GROUP BY place ");
             LViewPlace.ItemsSource = PlaceSessions.DefaultView;
-            RowPlaceSessions = ExecuteSql("SELECT row, place, CONVERT(varchar,price,100) as price, session_id, place_id, price_id FROM PlaceSession WHERE (session_id ='" + SelectTimePage.session_ + "')");
+
+            RowPlaceSessions = ExecuteSql("SELECT row, place, session_id, place_id, price_id FROM PlaceSession WHERE (session_id ='" + SelectTimePage.session_ + "')");
             LViewRowPlace.ItemsSource = RowPlaceSessions.DefaultView;
+
+           // LViewRowPlace.IsEnabled = false;
         }
 
+        private void LViewRowPlace_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //place_ = RowPlaceSessions.Rows[LViewRowPlace.SelectedIndex]["place_id"].ToString().Trim();
+        }
     }
 }
