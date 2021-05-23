@@ -13,21 +13,21 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="70" />
+           
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="70"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="150" />
+           
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Место/Ряд" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="Proxima Nova" TextAlignment="Center" TextWrapping="Wrap" Foreground="#A43820" IsHitTestVisible="False"/>
 
 
-        <Grid Grid.Row="2" Grid.Column="0" >
+        <Grid Grid.Row="1" Grid.Column="0" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
@@ -86,7 +86,7 @@
 
         </Grid>
 
-        <Grid Grid.Row="2" Grid.Column="3" >
+        <Grid Grid.Row="1" Grid.Column="2" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
@@ -147,7 +147,7 @@
 
         </Grid>
 
-        <Grid Grid.Row="0" Grid.Column="2" >
+        <Grid Grid.Row="0" Grid.Column="1" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
@@ -204,8 +204,14 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
+       
 
-         <ListView Grid.Row="2" Grid.Column="2" Name="LViewRowPlace" Background="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Cursor="Hand" Margin="250,0,170,0" SelectionChanged="LViewRowPlace_SelectionChanged" >
+
+        <StackPanel x:Name="RowPlaces" Grid.Row="1" Grid.Column="1" Orientation="Horizontal" >
+
+
+        </StackPanel>
+        <!--  <ListView Grid.Row="2" Grid.Column="2" Name="LViewRowPlace" Background="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Cursor="Hand" Margin="250,0,170,0" SelectionChanged="LViewRowPlace_SelectionChanged" >
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
@@ -233,7 +239,7 @@
                                     <GradientStop Color="#693d3d" Offset="1"/>
                                 </LinearGradientBrush>
                             </Border.Background>
-                            <TextBlock Text="{Binding place}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="Proxima Nova" TextAlignment="Center" TextWrapping="Wrap" Foreground="White"  IsHitTestVisible="False"   />
+                            <Button Content="{Binding place}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="Proxima Nova"  Foreground="White"  IsHitTestVisible="False" Click="Button_Click_1"   />
                         </Border>
 
 
@@ -241,6 +247,8 @@
 
                </DataTemplate>
             </ListView.ItemTemplate>
-        </ListView> 
+        </ListView> -->
+        
+        
     </Grid>
 </Page>
