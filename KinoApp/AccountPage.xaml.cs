@@ -23,6 +23,7 @@ namespace KinoApp
         public AccountPage()
         {
             InitializeComponent();
+            AccountFrame.Navigate(new InfoPage());
         }
 
         private void InfoBtn_Click(object sender, RoutedEventArgs e)

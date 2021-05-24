@@ -38,7 +38,6 @@ namespace KinoApp
         public SessionWindow()
         {
             InitializeComponent();
-            SelectPLaceFrame.Navigate(new PlacesPage());
             connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection connection = new SqlConnection(connectionString);
             try
@@ -75,9 +74,12 @@ namespace KinoApp
                 date.Text = reader[3].ToString();
                 time.Text = reader[4].ToString();
                 hall_id_ = reader[5].ToString();
+                SelectPLaceFrame.Navigate(new PlacesPage());
                 return;
             }
             reader.Close();
+            
+
         }
 
         private void Close_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
