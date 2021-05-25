@@ -19,15 +19,21 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Background="White"></Grid>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
             <Image  Name="LogoBtn" Width="200" Source="Resources/LastLogo.png"  Cursor="Hand" MouseLeftButtonDown="LogoBtn_Click" />
             <Button Name="SessionBtn"   Content="Расписание"      Width="320" FontFamily="Proxima Nova" FontSize="48" Foreground="White" Background="#A43820" Click="SessionBtn_Click"  Cursor="Hand"  />
-            <Button Name="TodayBtn"     Content="Сегодня в кино"  Width="320" FontFamily="Proxima Nova" FontSize="40" Foreground="White" Background="#BA5536" Click="TodayBtn_Click"    Cursor="Hand"  />
-            <Button Name="SoonBtn"      Content="Скоро в кино"    Width="320" FontFamily="Proxima Nova" FontSize="44" Foreground="White" Background="#A43820" Click="SoonBtn_Click"     Cursor="Hand"  />
-            <Button Name="ContactsBtn"  Content="Контакты"        Width="320" FontFamily="Proxima Nova" FontSize="48" Foreground="White" Background="#BA5536" Click="ContactsBtn_Click" Cursor="Hand"  />
-            <Button Name="AccountBtn"   Content="Личный кабинет"  Width="320" FontFamily="Proxima Nova" FontSize="38" Foreground="White" Background="#A43820" Click="AccountBtn_Click"  Cursor="Hand"  />
-            <Button Name="ExitBtn"      Content="Выход"           Width="120" FontFamily="Proxima Nova" FontSize="38" Foreground="White" Background="#46211A" Click="ExitBtn_Click"     Cursor="Hand"  />
+            <Border Width="640">
+                <Border.Background>
+                    <ImageBrush ImageSource="Resources/menuImg.jpg" Opacity="0.8"/>
+                </Border.Background>
+            </Border>
         </StackPanel>
+        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+        <Button Name="ContactsBtn"  Content="Контакты"        Width="320" FontFamily="Proxima Nova" FontSize="48" Foreground="White" Background="#BA5536" Click="ContactsBtn_Click" Cursor="Hand"  />
+            <Button Name="AccountBtn"   Content="Личный кабинет"  Width="320" FontFamily="Proxima Nova" FontSize="38" Foreground="White" Background="#A43820" Click="AccountBtn_Click"  Cursor="Hand"  />
+            <Button Name="ExitBtn"      Content="Выход"           Width="120" FontFamily="Proxima Nova" FontSize="38" Foreground="White" Background="#46211A" Click="ExitBtn_Click"     Cursor="Hand" HorizontalAlignment="Right" />
+        </StackPanel>
+        
         <Grid Grid.Row="2" Background="#46211A"></Grid>
         <TextBlock Grid.Row="2" Text="Кинотеатр Кураж" FontFamily="Proxima Nova" FontSize="45" HorizontalAlignment="Center" Foreground="White" ></TextBlock>
         <Frame NavigationUIVisibility="Hidden" Grid.Row="1"  Name="MainFrame" Height="890"/>

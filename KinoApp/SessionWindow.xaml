@@ -39,7 +39,7 @@
         <TextBlock Name="hall"            FontFamily="Proxima Nova" TextWrapping="Wrap" Text="errhall"   Foreground="White" FontSize="28" Margin="92,50,1582,68" />
         <TextBlock Name="date"            FontFamily="Proxima Nova" TextWrapping="Wrap" Text="errdate"   Foreground="White" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
         <TextBlock Name="time"            FontFamily="Proxima Nova" TextWrapping="Wrap" Text="errtime"   Foreground="White" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-        <TextBlock Text="Время сеанса: " FontFamily="Proxima Nova" TextWrapping="Wrap"                  Foreground="White" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="708,0,1006,0" Width="206"/>
+        <TextBlock Text="Время сеанса: "  FontFamily="Proxima Nova" TextWrapping="Wrap"                  Foreground="White" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="708,0,1006,0" Width="206"/>
 
         <Frame NavigationUIVisibility="Hidden" Grid.Row="1"  Name="SelectPLaceFrame"/>
     </Grid>

@@ -36,16 +36,6 @@ namespace KinoApp
             MainFrame.Navigate(new SessionPage());
         }
 
-        private void TodayBtn_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Navigate(new TodayPage());
-        }
-
-        private void SoonBtn_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Navigate(new SoonPage());
-        }
-
         private void ContactsBtn_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new ContactsPage());

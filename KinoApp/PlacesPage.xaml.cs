@@ -21,6 +21,7 @@ using System.Windows.Media.Animation;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
+
 namespace KinoApp
 {
     /// <summary>
@@ -43,8 +44,8 @@ namespace KinoApp
      //   public static int max_row { get; set; }
 
         public static int[] free_places;
-        public static int[] busy_places = new int[1000];
-        public Button[] places_;
+        public static int[] busy_places;
+        public Button[] places_ = new Button[100];
         private int count_place;
         public PlacesPage()
         {
@@ -62,6 +63,8 @@ namespace KinoApp
                 //Ошибка подключения БД!!
             }
 
+
+            
             RowPlaceSessions = ExecuteSql("SELECT row, place, session_id, place_id, price_id FROM PlaceSession WHERE (session_id ='" + SelectTimePage.session_ + "')");
 /*
             RowSessions = ExecuteSql("SELECT maxrow FROM MaxRow WHERE (hall_id ='" + SessionWindow.hall_id_ + "')");
@@ -69,54 +72,48 @@ namespace KinoApp
             PlaceSessions = ExecuteSql("SELECT maxplace  FROM MaxPlace WHERE (hall_id ='" + SessionWindow.hall_id_ + "')");
             max_place = int.Parse(PlaceSessions.Rows[0]["maxplace"].ToString().Trim());
  */     
-            BusyPlaces = ExecuteSql("SELECT count_place FROM CountPlaces WHERE (session_id ='" + SelectTimePage.session_ + "')");
-            count_place = int.Parse(BusyPlaces.Rows[0]["count_place"].ToString().Trim());
+           
 
 
-            for (int i = 0; i < count_place; i++)
+            for (int i = 0; i < RowPlaceSessions.Rows.Count; i++)
             {
-                //if (i = max_place)
-                var tempbut = new Button() { Name = $"sid{i + 1}", Content = $"{RowPlaceSessions.Rows[i]["place"].ToString().Trim()}", Height = 40, Width = 70, Margin = new Thickness(50, 0, 0, 35) };
-
+                var tempbut = new Button() { Name = $"sid{i + 1}", Content = $"{RowPlaceSessions.Rows[i]["place"].ToString().Trim()}", Height = 40, Width = 70, Margin = new Thickness(50, 0, 0, 35), Background = new LinearGradientBrush(Colors.LightBlue, Colors.SlateBlue, 90), };
+                places_[i] = tempbut;
+               // Span <Button> placesSpan = places_;
                 RowPlaces.Children.Add(tempbut);
-                //tempbut.Size = new System.Drawing.Size(50, 50);
-                //places_[i].Location = new System.Drawing.Point(_x, _y);
-                //places_[i].Click += new EventHandler(Form1_Click);//вставить строку сюда
-                //this.Controls.Add(places_[i]);
             }
-
-            /*
-                        for (int i = 0; i == count_place; i++)
-                        {
-                           // places_[i] = RowPlaceSessions.Rows[i + 1]["place"].ToString().Trim();
-                        }
+           // Span<Button> PlacesSpan = places_;
             
-            //LViewRowPlace.SelectedIndex[1].IsEnabled = false;
 
-            for (int i = 0; i < count_place; i++)
+            RowPlaceSessions = ExecuteSql("SELECT row, place, session_id, place_id, price_id FROM PlaceSession WHERE (session_id ='" + SelectTimePage.session_ + "')");
+            free_places = new int[RowPlaceSessions.Rows.Count];
+
+            //Span<Button> FreePlacesSpan = free_places; 
+            for (int i = 0; i < RowPlaceSessions.Rows.Count; i++)
             {
-                for (int i2 = 0; i2 < count_place; i2++)
+                free_places[i] = int.Parse(RowPlaceSessions.Rows[i]["place_id"].ToString().Trim());
+            }
+            BusyPlaces = ExecuteSql("SELECT place_id, row, place FROM BusyPlaces WHERE (session_id ='" + SelectTimePage.session_ + "')");
+            busy_places = new int[RowPlaceSessions.Rows.Count];
+            if (BusyPlaces.Rows.Count != 0)
+            {
+                for (int i = 0; i < BusyPlaces.Rows.Count; i++)
                 {
-                    if (free_places[i] == busy_places[i2])
+                    busy_places[i] = int.Parse(BusyPlaces.Rows[i]["place_id"].ToString().Trim());
+                }
+                for (int i = 0; i < RowPlaceSessions.Rows.Count; i++)
+                {
+                    for (int i2 = 0; i2 < BusyPlaces.Rows.Count; i2++)
                     {
-                        // LViewRowPlace.Items[free_places[i]].;
-                        // LViewRowPlace.IsHitTestVisible  = false;
-                        //  LViewRowPlace.
+                        if (free_places[i] == busy_places[i2])
+                        {
+                            places_[i].IsEnabled = false;
+                        }
                     }
                 }
             }
-            
-            for (int i = 0; i < maxsid; i++)
-            {
-                var tempbut = new Button() { Height = 30, Width = 30, Name = $"sid{i + 1}", Margin=new Thickness(10)};
 
-                RowPlaces.Children.Add(tempbut);
-                //tempbut.Size = new System.Drawing.Size(50, 50);
-                //places_[i].Location = new System.Drawing.Point(_x, _y);
-                //places_[i].Click += new EventHandler(Form1_Click);//вставить строку сюда
-                //this.Controls.Add(places_[i]);
-            }
-            */
+            
         }
 
         static DataTable ExecuteSql(string sql)
@@ -158,23 +155,7 @@ namespace KinoApp
 
            
 
-            RowPlaceSessions = ExecuteSql("SELECT row, place, session_id, place_id, price_id FROM PlaceSession WHERE (session_id ='" + SelectTimePage.session_ + "')");
-            free_places = new int[RowPlaceSessions.Rows.Count];
-
-
-            for (int i = 0; i < count_place; i++)
-            {
-                free_places[i] = int.Parse(RowPlaceSessions.Rows[i]["place_id"].ToString().Trim());
-            }
-            BusyPlaces = ExecuteSql("SELECT place_id, row, place FROM BusyPlaces WHERE (session_id ='" + SelectTimePage.session_ + "')");
-            if (BusyPlaces.Rows.Count != 0)
-            {
-                for (int i = 0; i < count_place; i++)
-                {
-                    busy_places[i] = int.Parse(BusyPlaces.Rows[i]["place_id"].ToString().Trim());
-                }
-            }
-
+            
 
         }
 
