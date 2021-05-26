@@ -16,7 +16,6 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
-using System.Drawing;
 using System.Windows.Media.Animation;
 using System.Data.SqlClient;
 using System.Data;
@@ -29,6 +28,11 @@ namespace KinoApp
     /// </summary>
     public partial class PlacesPage : Page
     {
+        public class CustomButton : Button
+        {
+            public string CustomProperty { get; set; }
+        }
+
         static string connectionString;
         SqlDataAdapter adapter;
 
@@ -40,13 +44,11 @@ namespace KinoApp
         static DataTable BusyPlaces;
 
 
-      //  public static int max_place { get; set; }
-     //   public static int max_row { get; set; }
+        public static string place_id_ { get; set; }
+        public static string[] free_places;
+        public static string[] busy_places;
+        public CustomButton[] places_ = new CustomButton[100];
 
-        public static int[] free_places;
-        public static int[] busy_places;
-        public Button[] places_ = new Button[100];
-        private int count_place;
         public PlacesPage()
         {
 
@@ -63,43 +65,39 @@ namespace KinoApp
                 //Ошибка подключения БД!!
             }
 
-
-            
             RowPlaceSessions = ExecuteSql("SELECT row, place, session_id, place_id, price_id FROM PlaceSession WHERE (session_id ='" + SelectTimePage.session_ + "')");
-/*
-            RowSessions = ExecuteSql("SELECT maxrow FROM MaxRow WHERE (hall_id ='" + SessionWindow.hall_id_ + "')");
-            max_row = int.Parse(RowSessions.Rows[0]["maxrow"].ToString().Trim());
-            PlaceSessions = ExecuteSql("SELECT maxplace  FROM MaxPlace WHERE (hall_id ='" + SessionWindow.hall_id_ + "')");
-            max_place = int.Parse(PlaceSessions.Rows[0]["maxplace"].ToString().Trim());
- */     
+            free_places = new string[RowPlaceSessions.Rows.Count];
+            for (int i = 0; i < RowPlaceSessions.Rows.Count; i++)
+            {
+                free_places[i] = RowPlaceSessions.Rows[i]["place_id"].ToString().Trim();
+            }
+
+            RowPlaceSessions = ExecuteSql("SELECT row, place, session_id, place_id, price_id FROM PlaceSession WHERE (session_id ='" + SelectTimePage.session_ + "')");
+            places_ = new CustomButton[RowPlaceSessions.Rows.Count];
+            for (int i = 0; i < RowPlaceSessions.Rows.Count; i++)
+            {
+                places_[i] = new CustomButton();
+                places_[i].Name =$"sid{i + 1}";
+                places_[i].CustomProperty = $"{free_places[i]}";
+                places_[i].Content = $"{RowPlaceSessions.Rows[i]["place"].ToString().Trim()}";
+                places_[i].Height = 40;
+                places_[i].Width = 70;
+                places_[i].Margin = new Thickness(50, 0, 0, 35);
+                //var bc = new BrushConverter();
+                // (Brush)bc.ConvertFrom("#A43820");
+                places_[i].Background = new LinearGradientBrush(Colors.LightBlue, Colors.SlateBlue, 90);
+                places_[i].Click += PlaceBtn_Click;
+                RowPlaces.Children.Add(places_[i]);
+            }
            
-
-
-            for (int i = 0; i < RowPlaceSessions.Rows.Count; i++)
-            {
-                var tempbut = new Button() { Name = $"sid{i + 1}", Content = $"{RowPlaceSessions.Rows[i]["place"].ToString().Trim()}", Height = 40, Width = 70, Margin = new Thickness(50, 0, 0, 35), Background = new LinearGradientBrush(Colors.LightBlue, Colors.SlateBlue, 90), };
-                places_[i] = tempbut;
-               // Span <Button> placesSpan = places_;
-                RowPlaces.Children.Add(tempbut);
-            }
-           // Span<Button> PlacesSpan = places_;
-            
-
-            RowPlaceSessions = ExecuteSql("SELECT row, place, session_id, place_id, price_id FROM PlaceSession WHERE (session_id ='" + SelectTimePage.session_ + "')");
-            free_places = new int[RowPlaceSessions.Rows.Count];
-
-            //Span<Button> FreePlacesSpan = free_places; 
-            for (int i = 0; i < RowPlaceSessions.Rows.Count; i++)
-            {
-                free_places[i] = int.Parse(RowPlaceSessions.Rows[i]["place_id"].ToString().Trim());
-            }
+           
             BusyPlaces = ExecuteSql("SELECT place_id, row, place FROM BusyPlaces WHERE (session_id ='" + SelectTimePage.session_ + "')");
-            busy_places = new int[RowPlaceSessions.Rows.Count];
+            busy_places = new string[RowPlaceSessions.Rows.Count];
             if (BusyPlaces.Rows.Count != 0)
             {
                 for (int i = 0; i < BusyPlaces.Rows.Count; i++)
                 {
-                    busy_places[i] = int.Parse(BusyPlaces.Rows[i]["place_id"].ToString().Trim());
+                    busy_places[i] = BusyPlaces.Rows[i]["place_id"].ToString().Trim();
                 }
                 for (int i = 0; i < RowPlaceSessions.Rows.Count; i++)
                 {
@@ -148,17 +146,18 @@ namespace KinoApp
             LViewPrice.Items.Refresh();
             PlaceSessions = ExecuteSql("SELECT place FROM Places  WHERE (hall_id ='" + SessionWindow.hall_id_ + "') GROUP BY place ");
             LViewPlace.ItemsSource = PlaceSessions.DefaultView;
-            LViewPlace.Items.Refresh();
-
-            // RowPlaceSessions = ExecuteSql("SELECT row, place, session_id, place_id, price_id FROM PlaceSession WHERE (session_id ='" + SelectTimePage.session_ + "')");
-            //LViewRowPlace.ItemsSource = RowPlaceSessions.DefaultView;
-
-           
-
-            
+            LViewPlace.Items.Refresh();            
 
         }
 
-        
+        private void PlaceBtn_Click(object sender, RoutedEventArgs e)
+        {
+            place_id_ = ((CustomButton)sender).CustomProperty.ToString().Trim();
+            ((CustomButton)sender).Background = new LinearGradientBrush(Colors.Red, Colors.DarkRed, 90);
+            //MessageBox.Show(place_id_);
+
+
+
+        }
     }
 }
