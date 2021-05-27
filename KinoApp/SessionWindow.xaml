@@ -16,11 +16,12 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Background="#46211A"/>
         <Grid Grid.Row="2" Background="#46211A"/>
+        <TextBlock Grid.Row="2" Text="Кинотеатр Кураж" FontFamily="Proxima Nova" FontSize="45" HorizontalAlignment="Center" Foreground="White" ></TextBlock>
 
         <Image Name="Close" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="50" Width="50" Source="Resources/cross.png"  Cursor="Hand" MouseLeftButtonDown="Close_MouseLeftButtonDown"  >
             <Image.Style>

@@ -33,7 +33,7 @@ namespace KinoApp
 
         private void OrdersBtn_Click(object sender, RoutedEventArgs e)
         {
-           // AccountFrame.Navigate(new OrderPage());
+            AccountFrame.Navigate(new OrdersPage());
         }
     }
 }

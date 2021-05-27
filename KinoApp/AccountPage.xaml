@@ -35,7 +35,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button Name="OrdersBtn" Grid.Row="1" Grid.Column="0" Content="Мои Заказы"  Margin="50,480,50,200"  Height="85" Width="320" FontFamily="Proxima Nova" FontSize="28" Foreground="White" Cursor="Hand" Click="OrdersBtn_Click" >
+        <Button Name="OrdersBtn" Grid.Row="1" Grid.Column="0" Content="Мои Билеты"  Margin="50,480,50,200"  Height="85" Width="320" FontFamily="Proxima Nova" FontSize="28" Foreground="White" Cursor="Hand" Click="OrdersBtn_Click" >
             <Button.Effect>
                 <DropShadowEffect Color="Black" Direction="310" ShadowDepth="8" Opacity="0.4"/>
             </Button.Effect>

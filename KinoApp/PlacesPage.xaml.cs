@@ -31,23 +31,25 @@ namespace KinoApp
         public class CustomButton : Button
         {
             public string CustomProperty { get; set; }
+            public bool CustomBuy { get; set; }
+            public int Num { get; set; }
         }
 
         static string connectionString;
         SqlDataAdapter adapter;
 
-        static DataTable RowPlaceSessions;
-        static DataTable RowSessions;
-        static DataTable PlaceSessions;
-        static DataTable PriceSessions;
+        DataTable RowPlaceSessions;
+        DataTable RowSessions;
+        DataTable PlaceSessions;
+        DataTable PriceSessions;
+        DataTable BusyPlaces;
         static DataTable Sessions;
-        static DataTable BusyPlaces;
 
 
-        public static string place_id_ { get; set; }
+        public static string[] places_id_; 
         public static string[] free_places;
         public static string[] busy_places;
-        public CustomButton[] places_ = new CustomButton[100];
+        public CustomButton[] places_;
 
         public PlacesPage()
         {
@@ -65,19 +67,19 @@ namespace KinoApp
                 //Ошибка подключения БД!!
             }
 
-            RowPlaceSessions = ExecuteSql("SELECT row, place, session_id, place_id, price_id FROM PlaceSession WHERE (session_id ='" + SelectTimePage.session_ + "')");
+            RowPlaceSessions = ExecuteSql("SELECT session_id, place_id FROM PlaceSession WHERE (session_id ='" + SelectTimePage.session_ + "')");
             free_places = new string[RowPlaceSessions.Rows.Count];
             for (int i = 0; i < RowPlaceSessions.Rows.Count; i++)
             {
                 free_places[i] = RowPlaceSessions.Rows[i]["place_id"].ToString().Trim();
             }
 
-            RowPlaceSessions = ExecuteSql("SELECT row, place, session_id, place_id, price_id FROM PlaceSession WHERE (session_id ='" + SelectTimePage.session_ + "')");
+            RowPlaceSessions = ExecuteSql("SELECT place, session_id, place_id FROM PlaceSession WHERE (session_id ='" + SelectTimePage.session_ + "')");
             places_ = new CustomButton[RowPlaceSessions.Rows.Count];
             for (int i = 0; i < RowPlaceSessions.Rows.Count; i++)
             {
                 places_[i] = new CustomButton();
-                places_[i].Name =$"sid{i + 1}";
+                places_[i].Name = $"sid{i + 1}";
                 places_[i].CustomProperty = $"{free_places[i]}";
                 places_[i].Content = $"{RowPlaceSessions.Rows[i]["place"].ToString().Trim()}";
                 places_[i].Height = 40;
@@ -86,12 +88,13 @@ namespace KinoApp
                 //var bc = new BrushConverter();
                 // (Brush)bc.ConvertFrom("#A43820");
                 places_[i].Background = new LinearGradientBrush(Colors.LightBlue, Colors.SlateBlue, 90);
+                places_[i].CustomBuy = false;
+                places_[i].Num = i;
                 places_[i].Click += PlaceBtn_Click;
                 RowPlaces.Children.Add(places_[i]);
             }
-           
-           
-            BusyPlaces = ExecuteSql("SELECT place_id, row, place FROM BusyPlaces WHERE (session_id ='" + SelectTimePage.session_ + "')");
+
+            BusyPlaces = ExecuteSql("SELECT place_id FROM BusyPlaces WHERE (session_id ='" + SelectTimePage.session_ + "')");
             busy_places = new string[RowPlaceSessions.Rows.Count];
             if (BusyPlaces.Rows.Count != 0)
             {
@@ -110,8 +113,9 @@ namespace KinoApp
                     }
                 }
             }
+            places_id_ = new string[RowPlaceSessions.Rows.Count];
 
-            
+
         }
 
         static DataTable ExecuteSql(string sql)
@@ -146,18 +150,37 @@ namespace KinoApp
             LViewPrice.Items.Refresh();
             PlaceSessions = ExecuteSql("SELECT place FROM Places  WHERE (hall_id ='" + SessionWindow.hall_id_ + "') GROUP BY place ");
             LViewPlace.ItemsSource = PlaceSessions.DefaultView;
-            LViewPlace.Items.Refresh();            
+            LViewPlace.Items.Refresh();
 
         }
 
         private void PlaceBtn_Click(object sender, RoutedEventArgs e)
         {
-            place_id_ = ((CustomButton)sender).CustomProperty.ToString().Trim();
-            ((CustomButton)sender).Background = new LinearGradientBrush(Colors.Red, Colors.DarkRed, 90);
-            //MessageBox.Show(place_id_);
+            
+            {
+                if (((CustomButton)sender).CustomBuy == true)
+                {
+                    places_id_[((CustomButton)sender).Num] = null;
+                    ((CustomButton)sender).Background = new LinearGradientBrush(Colors.LightBlue, Colors.SlateBlue, 90);
+                    ((CustomButton)sender).CustomBuy = false;
+                }
+                else
+                {
+                    places_id_[((CustomButton)sender).Num] = ((CustomButton)sender).CustomProperty.ToString().Trim();
+                    ((CustomButton)sender).Background = new LinearGradientBrush(Colors.Red, Colors.DarkRed, 90);
+                    ((CustomButton)sender).CustomBuy = true;
 
+                }
+                //MessageBox.Show(place_id_);
+            }
 
 
         }
+
+        private void GoBuyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new BuyPage());
+        }
+
     }
 }

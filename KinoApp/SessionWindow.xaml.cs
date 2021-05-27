@@ -31,7 +31,7 @@ namespace KinoApp
     {
         static string connectionString;
         SqlDataAdapter adapter;
-        static DataTable NameMovie;
+        DataTable NameMovie;
 
         public static string hall_id_ { get; set; }
 

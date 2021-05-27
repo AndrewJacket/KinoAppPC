@@ -16,7 +16,6 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
-using System.Drawing;
 using System.Windows.Media.Animation;
 using System.Data.SqlClient;
 using System.Data;
@@ -25,17 +24,16 @@ using System.Configuration;
 namespace KinoApp
 {
     /// <summary>
-    /// Логика взаимодействия для DateSessionPage.xaml
+    /// Логика взаимодействия для BuyPage.xaml
     /// </summary>
-    public partial class DateSessionPage : Page
+    public partial class BuyPage : Page
     {
         static string connectionString;
         SqlDataAdapter adapter;
-        static DataTable Sessions;
-        DataTable DeleteSessions;
-        public static string movie_id_ { get; set; }
-        public static string day_session_ { get; set; }
-        public DateSessionPage()
+        static DataTable Table;
+        DataTable BuyPlaces;
+
+        public BuyPage()
         {
             InitializeComponent();
             connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
@@ -49,22 +47,10 @@ namespace KinoApp
             {
                 //Ошибка подключения БД!!
             }
-
-            string sql;
-            DeleteSessions = new DataTable();
-            SqlConnection connection1 = null;
-            sql = "DELETE FROM Sessions WHERE date_of_session <'" + SessionPage.DateToday + "'; ";
-            connection1 = new SqlConnection(connectionString);
-            SqlCommand command1 = new SqlCommand(sql, connection1);
-            connection1.Open();
-            int num = command1.ExecuteNonQuery();
-            connection1.Close();
         }
-
-
         static DataTable ExecuteSql(string sql)
         {
-            Sessions = new DataTable();
+            Table = new DataTable();
             SqlConnection connection = null;
 
             connection = new SqlConnection(connectionString);
@@ -75,25 +61,25 @@ namespace KinoApp
                 SqlDataReader reader = command.ExecuteReader();
                 using (reader)
                 {
-                    Sessions.Load(reader);
+                    Table.Load(reader);
                 }
             }
-            return Sessions;
+            return Table;
 
         }
+
+
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            //хранимая процедура
-            Sessions = ExecuteSql("SELECT poster, movie_title, CONVERT(varchar,length,108) as length, genre, rating, CONVERT(varchar,date_of_session,106) as date_of_session, movie_id  FROM MoviesSessions WHERE (date_of_session='" + SessionPage.Date + "');");
-            LViewSessions.ItemsSource = Sessions.DefaultView;
+            //BuyPlaces = ExecuteSql("SELECT row, place, price FROM PlaceSession WHERE ((session_id ='" + SelectTimePage.session_ + "') AND (place_id ='" + PlacesPage.places_id_[((PlacesPage.CustomButton)sender).Num] + "'))");
+            LViewPlacePrice.ItemsSource = BuyPlaces.DefaultView;
+            LViewPlacePrice.Items.Refresh();
+           
         }
 
-        private void LViewSessions_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void BuyBtn_Click(object sender, RoutedEventArgs e)
         {
-            movie_id_ = Sessions.Rows[LViewSessions.SelectedIndex]["movie_id"].ToString().Trim();
-            day_session_ = Sessions.Rows[LViewSessions.SelectedIndex]["date_of_session"].ToString().Trim();
-            SelectTimeFrame.Navigate(new SelectTimePage());
-
 
         }
     }

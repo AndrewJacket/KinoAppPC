@@ -73,6 +73,9 @@
     <Compile Include="AccountPage.xaml.cs">
       <DependentUpon>AccountPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BuyPage.xaml.cs">
+      <DependentUpon>BuyPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ContactsPage.xaml.cs">
       <DependentUpon>ContactsPage.xaml</DependentUpon>
     </Compile>
@@ -96,6 +99,9 @@
     <Compile Include="MenuWindow.xaml.cs">
       <DependentUpon>MenuWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OrdersPage.xaml.cs">
+      <DependentUpon>OrdersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PlacesPage.xaml.cs">
       <DependentUpon>PlacesPage.xaml</DependentUpon>
     </Compile>
@@ -115,6 +121,10 @@
       <DependentUpon>SessionWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="AccountPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BuyPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -155,6 +165,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrdersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
