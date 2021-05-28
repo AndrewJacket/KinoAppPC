@@ -32,6 +32,7 @@ namespace KinoApp
         SqlDataAdapter adapter;
         static DataTable Table;
         DataTable BuyPlaces;
+        DataTable FullTable;
 
         public BuyPage()
         {
@@ -72,15 +73,84 @@ namespace KinoApp
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            //BuyPlaces = ExecuteSql("SELECT row, place, price FROM PlaceSession WHERE ((session_id ='" + SelectTimePage.session_ + "') AND (place_id ='" + PlacesPage.places_id_[((PlacesPage.CustomButton)sender).Num] + "'))");
+            string addplace = "";
+            string mainplace = "";
+            mainplace = $"SELECT row, place, price FROM PlaceSession WHERE (session_id ={SelectTimePage.session_}) AND ( (place_id= null)";
+            for (int i = 0; i < PlacesPage.places_id_.Length; i++)
+            {
+                if (PlacesPage.places_id_[i] != null)
+                {
+                    addplace = $" OR (place_id = {PlacesPage.places_id_[i]}) ";
+                    mainplace = String.Concat(mainplace, addplace);
+                }
+            }
+            mainplace = String.Concat(mainplace, ")");
+            BuyPlaces = ExecuteSql(mainplace);
             LViewPlacePrice.ItemsSource = BuyPlaces.DefaultView;
-            LViewPlacePrice.Items.Refresh();
-           
+
+
+            mainplace = $"SELECT SUM(price) AS FullPrice FROM PlaceSession WHERE (session_id ={SelectTimePage.session_}) AND ( (place_id= null)";
+            for (int i = 0; i < PlacesPage.places_id_.Length; i++)
+            {
+                if (PlacesPage.places_id_[i] != null)
+                {
+                    addplace = $" OR (place_id = {PlacesPage.places_id_[i]}) ";
+                    mainplace = String.Concat(mainplace, addplace);
+                }
+            }
+            mainplace = String.Concat(mainplace, ")");
+            fullprice_.Text = "null";
+            FullTable = new DataTable();
+            SqlConnection connection = null;
+            connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(mainplace, connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                fullprice_.Text = reader[0].ToString();
+            }
+            reader.Close();
         }
+
 
         private void BuyBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            string addplace = "";
+            string mainplace = "";
+            mainplace = $"INSERT INTO Orders(order_id, session_id, place_id, customer_id, date_of_sale) VALUES ";
+            for (int i = 0; i < PlacesPage.places_id_.Length; i++)
+            {
+                if (PlacesPage.places_id_[i] != null)
+                {
+                    string sql;
+                    SqlConnection connection1 = null;
+                    string idOrder = null;
+                    connection1 = new SqlConnection(connectionString);
+                    connection1.Open();
+                    sql = "SELECT top(1) order_id from Orders Order by order_id desc;";
+                    SqlCommand command1 = new SqlCommand(sql, connection1);
+                    SqlDataReader reader = command1.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        idOrder = reader[0].ToString();
+                        int id = int.Parse(idOrder) + 1;
+                        idOrder = id.ToString();
+                    }
+                    reader.Close();
+                    addplace = $"({idOrder}, {SelectTimePage.session_}, {PlacesPage.places_id_[i]}, {MainWindow.id_}, '{DateTime.Now}'),";
+                    mainplace = String.Concat(mainplace, addplace);
+                }
+            }
+            mainplace = mainplace.Remove(mainplace.Length - 1);
+            SqlConnection connection = null;
+            connection = new SqlConnection(connectionString);
+            connection.Open();
+            SqlCommand command = new SqlCommand(mainplace, connection);
+            int num = command.ExecuteNonQuery();
+            connection.Close();
+            new MenuWindow().Show();
+            Helper.CloseWindow(Window.GetWindow(this));
         }
     }
 }
